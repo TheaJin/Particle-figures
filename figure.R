@@ -56,59 +56,56 @@ View(kim_f)
 
 # tdf
 tdf_plot <- ggplot(weibel, aes(x = dp, y = tdf)) +
-  geom_star(size = 3, fill = 'gray') + geom_line() + 
+  geom_star(size = 2, fill = 'gray') + geom_line() + 
   
-  geom_star(data = weibel_1000, aes(x = dp, y = tdf), size = 3, starshape = 13, fill = 'gray')+
+  geom_star(data = weibel_1000, aes(x = dp, y = tdf), size = 2, starshape = 13, fill = 'gray')+
   geom_line(data = weibel_1000, aes(x = dp, y = tdf), linetype = 'dashed')+
-        
+  
   # Heyder
-  geom_star(data = Heyder, aes(x = dp, y = DE, starshape = interaction(Q, Vt)), size = 3) +
-  geom_star(data = Heyder_1000, aes(x = dp, y = DE, starshape = interaction(Q, Vt)), size = 3) +
+  geom_star(data = Heyder, aes(x = dp, y = DE, starshape = interaction(Q, Vt)), size = 2) +
+  geom_star(data = Heyder_1000, aes(x = dp, y = DE, starshape = interaction(Q, Vt)), size = 2) +
   
   geom_star(data = kim_unisex, aes(x = dp, y = TDF, starshape = interaction(Q, Vt)), 
-            fill = 'black',size = 3) +
+            fill = 'black',size = 2) +
   scale_starshape_manual(name = "Breathing Pattern", 
-                       labels = c("Vt = 500, Q = 250 ml", "Vt = 1000, Q = 500 ml"),
-                       values = c(1, 13)) +
-  theme_classic() + scale_x_log10() + 
+                         labels = c("Vt = 500, Q = 250 ml", "Vt = 1000, Q = 500 ml"),
+                         values = c(1, 13)) + theme_classic() +
+  theme(legend.position ="bottom") + scale_x_log10() + 
+  
   xlab("Particle size [micron]") + ylab("Total Deposition Fraction")
 
-# Assuming tdf_plot is your original plot and labelled_plot is the one with labels
-legend_tdf <- get_legend(tdf_plot)
-print(legend_tdf)
+# Create tdf_plot without legend
+tdf_plot_no_legend <- ggplot(weibel, aes(x = dp, y = tdf)) +
+  geom_star(size = 2, fill = 'gray') + geom_line() + 
   
+  geom_star(data = weibel_1000, aes(x = dp, y = tdf), size = 2, starshape = 13, fill = 'gray')+
+  geom_line(data = weibel_1000, aes(x = dp, y = tdf), linetype = 'dashed')+
+  
+  # Heyder
+  geom_star(data = Heyder, aes(x = dp, y = DE, starshape = interaction(Q, Vt)), size = 2) +
+  geom_star(data = Heyder_1000, aes(x = dp, y = DE, starshape = interaction(Q, Vt)), size = 2) +
+  
+  geom_star(data = kim_unisex, aes(x = dp, y = TDF, starshape = interaction(Q, Vt)), 
+            fill = 'black',size = 2) +
+  scale_starshape_manual(name = "Breathing Pattern", 
+                         labels = c("Vt = 500, Q = 250 ml", "Vt = 1000, Q = 500 ml"),
+                         values = c(1, 13)) + theme_classic() +
+  theme(legend.position ="none") + scale_x_log10() + 
+  
+  xlab("Particle size [micron]") + ylab("Total Deposition Fraction")
 
-# restore tdf_plot without label
-tdf_plot <- ggplot(weibel, aes(x = dp, y = tdf)) +
-    geom_star(size = 3, fill = 'gray') + geom_line() + 
-    
-    geom_star(data = weibel_1000, aes(x = dp, y = tdf), size = 3, starshape = 13, fill = 'gray')+
-    geom_line(data = weibel_1000, aes(x = dp, y = tdf), linetype = 'dashed')+
-    
-    # Heyder
-    geom_star(data = Heyder, aes(x = dp, y = DE, starshape = interaction(Q, Vt)), size = 3) +
-    geom_star(data = Heyder_1000, aes(x = dp, y = DE, starshape = interaction(Q, Vt)), size = 3) +
-    
-    geom_star(data = kim_unisex, aes(x = dp, y = TDF, starshape = interaction(Q, Vt)), 
-              fill = 'black',size = 3) +
-    
-    theme_classic() + scale_x_log10() + xlab(NULL) +
-    # xlab("Particle size [micron]") + 
-  ylab("Total Deposition Fraction") +
-    theme(legend.position = "none")
-  
   
 # bdf
 bdf_plot <- ggplot(weibel, aes(x = dp, y = bdf)) +
-  geom_star(size = 3, fill = 'gray') + geom_line() + 
+  geom_star(size = 2, fill = 'gray') + geom_line() + 
   # weibel, vt =1000, q = 500
-    geom_star(data = weibel_1000, aes(x = dp, y = bdf), size = 3, starshape = 13, fill = 'gray')+
+    geom_star(data = weibel_1000, aes(x = dp, y = bdf), size = 2, starshape = 13, fill = 'gray')+
     geom_line(data = weibel_1000, aes(x = dp, y = bdf), linetype = 'dashed')+
     # Heyder
-    geom_star(data = Heyder, aes(x = dp, y = DEB, starshape = interaction(Q, Vt)), size = 3) +
+    geom_star(data = Heyder, aes(x = dp, y = DEB, starshape = interaction(Q, Vt)), size = 2) +
     # kim
-    geom_star(data = kim, aes(x = dp, y = TB_M), starshape = 1, fill = 'black', size = 3) +
-    geom_star(data = kim_f, aes(x = dp, y = TB_F), starshape = 1, fill = 'black', size = 3) +
+    geom_star(data = kim, aes(x = dp, y = TB_M), starshape = 1, fill = 'black', size = 2) +
+    geom_star(data = kim_f, aes(x = dp, y = TB_F), starshape = 1, fill = 'black', size = 2) +
     theme_classic() + scale_x_log10() + 
     #xlab("Particle size [micron]") + 
   xlab(NULL) +
@@ -117,35 +114,39 @@ bdf_plot <- ggplot(weibel, aes(x = dp, y = bdf)) +
   
 # adf  
 adf_plot <- ggplot(weibel, aes(x = dp, y = adf)) +
-  geom_star(size = 3, fill = 'gray') + geom_line() + 
+  geom_star(size = 2, fill = 'gray') + geom_line() + 
   # weibel, vt =1000, q = 500
-  geom_star(data = weibel_1000, aes(x = dp, y = adf), size = 3, starshape = 13, fill = 'gray')+
+  geom_star(data = weibel_1000, aes(x = dp, y = adf), size = 2, starshape = 13, fill = 'gray')+
   geom_line(data = weibel_1000, aes(x = dp, y = adf), linetype = 'dashed')+
   # Heyder
-  geom_star(data = Heyder, aes(x = dp, y = DEA, starshape = interaction(Q, Vt)), size = 3) +
+  geom_star(data = Heyder, aes(x = dp, y = DEA, starshape = interaction(Q, Vt)), size = 2) +
   # kim
-  geom_star(data = kim, aes(x = dp, y = AL_M), starshape = 1, fill = 'black',size = 3) +
-  geom_star(data = kim_f, aes(x = dp, y = AL_F), starshape = 1, fill = 'black',size = 3) +
+  geom_star(data = kim, aes(x = dp, y = AL_M), starshape = 1, fill = 'black',size = 2) +
+  geom_star(data = kim_f, aes(x = dp, y = AL_F), starshape = 1, fill = 'black',size = 2) +
   theme_classic() + scale_x_log10() + 
   xlab("Particle size [micron]") + ylab("Alveolar Deposition Fraction") +
   theme(legend.position = "none")
-  
+
 
 # Assuming your plots are stored in plot1, plot2, and plot3 variables
-labeled_plots <- grid.arrange(tdf_plot + labs(title = "a)"), 
+labeled_plots <- grid.arrange(tdf_plot_no_legend + labs(title = "a)"), 
                               bdf_plot + labs(title = "b)"), 
                               adf_plot + labs(title = "c)"), ncol = 1)
 # Print the combined plots
 labeled_plots
+class(labeled_plots)
 
-# Combine the labelled plot and the legend
-combined_plot <- plot_grid(labeled_plots, legend_tdf, ncol = 2, align = "v")
+# get legend
+legend = cowplot::get_plot_component(tdf_plot, 'guide-box-bottom', return_all = TRUE)
+cowplot::ggdraw(legend)
+class(legend)
 
-# Print the combined plot
-print(combined_plot)
+combined_plot <- plot_grid(labeled_plots, legend, ncol = 1, rel_heights = c(4, 0.5))
+combined_plot
 
 
-### figure 3
+
+############################################################## figure 3
 ### import subject specific's model result
 ### Thea: find the simulation data file
 literature_result <- read_excel("/hpc/gjin250/Downloads/literature_result.xlsx")
@@ -167,15 +168,17 @@ sbj_tdf_melt$Study = as.character(sbj_tdf_melt$Study)
 str(sbj_tdf_melt)
 
 
-plot_tdf <- ggplot(sbj_tdf_melt, aes(x = as.numeric(as.character(dp)), y = value, 
-                         starshape = Study, fill = Sex, group = Sex)) + 
+plot_tdf <- 
+  ggplot(sbj_tdf_melt, aes(x = as.numeric(as.character(dp)), y = value, 
+                         starshape = Study, fill = Sex)) + 
   # simulation
-  stat_summary(fun = mean, geom = "star", size = 4, show.legend = T,
+  stat_summary(fun = mean, geom = "star", size = 4, show.legend = TRUE,
                aes(starshape = Study)) +
   stat_summary(fun = mean, geom = "line",  aes(linetype = Sex), 
-               colour = 'black', show.legend = F) +
+               colour = 'black', show.legend = FALSE) +
   stat_summary(fun.data = mean_se, geom = "errorbar", 
-               fun.args = list(mult = 2), show.legend = F) + 
+               aes(group = Sex),
+               show.legend = FALSE) + 
   # Schiller
   geom_star(data = literature_result, show.legend = F, 
             aes(x = dp, y = TDF_O, fill = Sex_2, starshape = Study), size = 3) +
@@ -189,18 +192,59 @@ plot_tdf <- ggplot(sbj_tdf_melt, aes(x = as.numeric(as.character(dp)), y = value
   geom_star(data = kim_f, aes(x = dp, y = INTRA_F, starshape = Study), show.legend = F,size = 3) +
   geom_star(data = kim_f, aes(x = dp, y = TDF_F, starshape = Study_2), show.legend = F,size = 3) +
   
-  scale_fill_manual(name = "Sex", values = c("white", 'black', "grey75"), guide = "none") +
+  #scale_fill_manual(name = "Sex", values = c("white", 'black', "grey75"), guide = "none") +
+  scale_fill_manual(name = "Sex", values = c("white", 'black', "grey75"))+
   scale_starshape_manual(name = "Study",
                      values = c(1, 13, 15, 11, 12, 14, 28)) +
-  theme_classic() + xlab(NULL) +
-  # xlab("Particle size [micron]") + 
-  ylab("Total Deposition Fraction") + theme(legend.position = "none") +
-  scale_x_log10() + guides(shape = guide_legend(title = "Sex", override.aes = list(shape = NA)))
+  theme_classic() + xlab(NULL) + 
+  guides(linetype =F, fill= F, group= guide_legend(override.aes = list(shape = NA))) +
 
+  ylab("Total Deposition Fraction") + theme(legend.position = "bottom") +
+  scale_x_log10() 
+
+plot_tdf
+
+#shape = 
+  # xlab("Particle size [micron]") + 
 
 # get legend
-legend_tdf <- get_legend(plot_tdf)
-print(legend_tdf)
+
+legend_tdf <- cowplot::get_plot_component(plot_tdf, 'guide-box-bottom', return_all = TRUE)
+cowplot::ggdraw(legend_tdf)
+class(legend_tdf)
+
+# get_legend(plot_tdf)
+# print(legend_tdf)
+
+plot_tdf_no_legend <- 
+  ggplot(sbj_tdf_melt, aes(x = as.numeric(as.character(dp)), y = value, 
+                                     starshape = Study, fill = Sex, group = Sex)) + 
+  # simulation
+  stat_summary(fun = mean, geom = "star", size = 2, show.legend = T,
+               aes(starshape = Study)) +
+  stat_summary(fun = mean, geom = "line",  aes(linetype = Sex), 
+               colour = 'black', show.legend = F) +
+  stat_summary(fun.data = mean_se, geom = "errorbar", 
+               fun.args = list(mult = 2), show.legend = F) + 
+  # Schiller
+  geom_star(data = literature_result, show.legend = F, 
+            aes(x = dp, y = TDF_O, fill = Sex_2, starshape = Study), size = 2) +
+  # Cheng
+  geom_star(data = cheng1996, show.legend = F, 
+            aes(x = dp, y = IDF_O, fill = Sex_2, starshape = Study), size = 2) +
+  # kim
+  geom_star(data = kim, aes(x = dp, y = INTRA_M, starshape = Study),  show.legend = F, size = 2) +
+  geom_star(data = kim, aes(x = dp, y = TDF_M, starshape = Study_2), show.legend = F,size = 2) +
+  
+  geom_star(data = kim_f, aes(x = dp, y = INTRA_F, starshape = Study), show.legend = F,size = 2) +
+  geom_star(data = kim_f, aes(x = dp, y = TDF_F, starshape = Study_2), show.legend = F,size = 2) +
+  
+  scale_fill_manual(name = "Sex", values = c("white", 'black', "grey75"), guide = "none") +
+  scale_starshape_manual(name = "Study",
+                         values = c(1, 13, 15, 11, 12, 14, 28)) +
+  theme_classic() + xlab(NULL) +
+  ylab("Total Deposition Fraction") + theme(legend.position = "none") +
+  scale_x_log10()
 
 
 ### bdf
@@ -215,15 +259,15 @@ sbj_bdf_melt$Study = 'Simulation'
 plot_bdf <- ggplot(sbj_bdf_melt, aes(x = as.numeric(as.character(dp)), y = value, 
                                      starshape = Study, fill = Sex, group = Sex)) + 
   # simulation
-  stat_summary(fun = mean, geom = "star", size = 4, show.legend = T,
+  stat_summary(fun = mean, geom = "star", size = 2, show.legend = T,
                aes(starshape = Study)) +
   stat_summary(fun = mean, geom = "line",  aes(linetype = Sex), 
                colour = 'black', show.legend = F) +
   stat_summary(fun.data = mean_se, geom = "errorbar", 
                fun.args = list(mult = 2), show.legend = F) + 
   # kim
-  geom_star(data = kim, aes(x = dp, y = TB_M, starshape = Study),  show.legend = F, size = 3) +
-  geom_star(data = kim_f, aes(x = dp, y = TB_F, starshape = Study), show.legend = F,size = 3) +
+  geom_star(data = kim, aes(x = dp, y = TB_M, starshape = Study),  show.legend = F, size = 2) +
+  geom_star(data = kim_f, aes(x = dp, y = TB_F, starshape = Study), show.legend = F,size = 2) +
   
   scale_fill_manual(name = "Sex", values = c("white", 'black'), guide = "none") +
   scale_starshape_manual(name = "Study", values = c(13, 15, 28)) +
@@ -249,15 +293,15 @@ sbj_adf_melt$Study = 'Simulation'
 plot_adf <- ggplot(sbj_adf_melt, aes(x = as.numeric(as.character(dp)), y = value, 
                          starshape = Study, group = Sex, fill = Sex)) + 
   # simulation
-  stat_summary(fun = mean, geom = "star", size = 4, show.legend = T,
+  stat_summary(fun = mean, geom = "star", size = 2, show.legend = T,
                aes(starshape = Study)) +
   stat_summary(fun = mean, geom = "line", aes(linetype = Sex), 
                colour = 'black', show.legend = FALSE) +
   stat_summary(fun.data = mean_se, geom = "errorbar", 
                fun.args = list(mult = 2), show.legend = FALSE) + 
   # kim
-  geom_star(data = kim, aes(x = dp, y = AL_M, starshape = Study), size = 3, show.legend = FALSE) +
-  geom_star(data = kim_f, aes(x = dp, y = AL_F, starshape = Study), size = 3, show.legend = FALSE) +
+  geom_star(data = kim, aes(x = dp, y = AL_M, starshape = Study), size = 2, show.legend = FALSE) +
+  geom_star(data = kim_f, aes(x = dp, y = AL_F, starshape = Study), size = 2, show.legend = FALSE) +
   
   scale_fill_manual(name = "Sex", values = c("white", 'black'), guide = "none") +
   scale_starshape_manual(name = "Study", values = c(13, 15, 28)) +
@@ -269,16 +313,15 @@ plot_adf <- ggplot(sbj_adf_melt, aes(x = as.numeric(as.character(dp)), y = value
   theme(legend.position = "none")
 
 # Assuming your plots are stored in plot1, plot2, and plot3 variables
-labeled_plot <- grid.arrange(plot_tdf + labs(title = "a)"), 
+labeled_plot <- grid.arrange(plot_tdf_no_legend + labs(title = "a)"), 
                              plot_bdf + labs(title = "b)"), 
                              plot_adf + labs(title = "c)"), ncol = 1)
 # Print the combined plots
-#labeled_plot
+labeled_plot
 
 # Combine the labelled plot and the legend
-combined_plot <- plot_grid(labeled_plot, legend_tdf, ncol = 2, align = "v")
+combined_plot <- plot_grid(labeled_plot, legend_tdf, ncol = 1, rel_heights = c(4, 0.5))
 
 # Print the combined plot
-print(combined_plot)
-
+combined_plot
 
